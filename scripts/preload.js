@@ -14,36 +14,55 @@
       
     
     //do some stuff before looping through
-	$("." + settings.loadedClass).css("display","none");
-	$("." + settings.loadingClass).css("display","block");
-    
-	
-    // loop through the objects
-    this.each(function()       
+		$("." + settings.loadedClass).css("display","none");
+		$("." + settings.loadingClass).css("display","block");
+		
+		var ct = 0;
+		var loadCount = this.length;
+		
+
+    // hide the files
+    this.each(function(index, element)       
     {
-      //pass in an array of 0s the length of the text
-      var array = new Array();
-      for (var i = 0; i <= originalText.length; i++)
-      {
-        array[i] = 0;
-      }
-      
-      //call the recursive function for this object
-      hackTextRecurseFunction
-      (
-        settings.initialDelay,        // initial delay
-        0,                            // iteration count (increments through recursion)
-        originalText,                 // text to replace
-        array,                        // current text at looped point in time
-        this,                         // object to apply work to
-        settings.charIterations,      // how many characters to go through before hitting the right one
-        settings.delayBetweenChars,   // delay between characters
-        settings.symbols              // Symbols to go through while looping randomly
-      );       
+			$(element).css("display","none");			
+    });
+	
+		// hide the files
+    this.each(function(index, element)       
+    {
+			$(element).css("display","none");			
     });
 	
 	
-	//Do some stuff after looping
+		// load one by one
+    this.each(function(index, element)       
+    {
+			
+			$(this).load(function()
+			{
+				// Handler for .load() called.
+				loaded();
+			});
+			$(element).css("display","block");
+    });
+	
+		
+		function loaded()
+		{
+			ct++;
+			console.log(ct);
+			if (ct >= loadCount)
+			{
+				console.log("done!");
+			}
+			
+		}
+		
+		
+	
+	
+	
+		//Do some stuff after looping
 	
 	
 	

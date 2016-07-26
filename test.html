@@ -10,13 +10,18 @@
 
   <body>
   
+	
+	<img src="images/pic1.jpg" class="toLoad">
+	<img src="images/pic2.jpg" class="toLoad">
+	<img src="images/pic3.jpg" class="toLoad">
+	
 	<div class="loadingContent">loading...</div>
 	<div class="loadedContent">loaded!</div>
     
     <script type="text/javascript">
       
 	  
-		$(".contentToPreload").preload({loadingClass: 'loadingContent', loadedClass: 'loadedContent'})
+			$(".toLoad").preload({loadingClass: 'loadingContent', loadedClass: 'loadedContent'});
 
     </script>
 
