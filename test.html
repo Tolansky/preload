@@ -24,16 +24,17 @@
 	<div class="loadedContent">loaded!</div>
     
    <script type="text/javascript">
-		function onComplete()
+
+		function progress(x, total)
 		{
-			console.log("poop");
+			console.log(x + "/" + total);
 		}
-		
-		 $(".toLoad").preload({loadingClass: 'loadingContent',
-													loadedClass: 'loadedContent'
-													,callback: function(){console.log("poop");}
-													});
-		
+	 
+		 $(".toLoad").preload({loadingClass: 'loadingContent',								// Class of elements to show while loading
+													loadedClass: 'loadedContent',										// Class of elements to show once loaded
+													progressFunction: progress,											// Optional function to call per element loaded (passing in index,totalCount)
+													onComplete: function(){console.log("poop");}		// Optional function to call once all are loaded
+													});		
 	 </script>
 
   </body>

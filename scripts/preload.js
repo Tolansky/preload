@@ -9,19 +9,21 @@
         // These are the defaults.
         loadingClass: '',                              // The delay before the process starts
         loadedClass: '',
-				callback : null
+				progressFunction: null,
+				onComplete : null
       }, options );
 
       
-    console.log("jQuery called");
+		//Count & Total Length variables
+		var ct = 0;
+		var loadCount = this.length;
+		
 		
     //do some stuff before looping through
 		$("." + settings.loadedClass).css("display","none");
 		$("." + settings.loadingClass).css("display","block");
 		
-		var ct = 0;
-		var loadCount = this.length;
-		console.log("length is " + loadCount);
+		
 		// load one by one
     this.each(function(index, element)
     {			
@@ -31,38 +33,31 @@
     });
 	
 		
+		//When each element has loaded
 		function loaded()
 		{
 			ct++;
-			console.log(ct);
+			if (settings.progressFunction !== null)
+			{
+				settings.progressFunction(ct, loadCount);
+			}
 			if (ct >= loadCount)
 			{
 				console.log("done!");
 				
 				
-				if (settings.callback === null)
+				if (settings.onComplete === null)
 				{
-					// bring the loaded stuff
+					// bring the loaded stuff & hide the loading class
 					$("." + settings.loadedClass).css("display","block");
+					$("." + settings.loadingClass).css("display","none");
 				}
 				else
 				{
-					settings.callback();	
+					settings.onComplete();	
 				}
-				
-				
 			}
-			
 		}
-		
-		
-	
-	
-	
-		//Do some stuff after looping
-	
-	
-	
   };
   
 
