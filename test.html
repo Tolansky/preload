@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<!--Scripts-->
+    <script type="text/javascript" src="scripts/jquery-2.1.4.min.js"></script> <!-- jQuery -->
+    <script type="text/javascript" src="scripts/prefixfree.min.js"></script>    <!-- prefixFree from -->
+    <script type="text/javascript" src="scripts/preload.js"></script>
+    
+  </head>
+
+  <body>
+  
+	<div class="loadingContent">loading...</div>
+	<div class="loadedContent">loaded!</div>
+    
+    <script type="text/javascript">
+      
+	  
+		$(".contentToPreload").preload({loadingClass: 'loadingContent', loadedClass: 'loadedContent'})
+
+    </script>
+
+  </body>
+</html>
