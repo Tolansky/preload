@@ -24,7 +24,16 @@
 	<div class="loadedContent">loaded!</div>
     
    <script type="text/javascript">
-		 $(".toLoad").preload({loadingClass: 'loadingContent', loadedClass: 'loadedContent'});
+		function onComplete()
+		{
+			console.log("poop");
+		}
+		
+		 $(".toLoad").preload({loadingClass: 'loadingContent',
+													loadedClass: 'loadedContent'
+													,callback: function(){console.log("poop");}
+													});
+		
 	 </script>
 
   </body>

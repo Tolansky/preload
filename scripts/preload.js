@@ -8,7 +8,8 @@
       {
         // These are the defaults.
         loadingClass: '',                              // The delay before the process starts
-        loadedClass: ''
+        loadedClass: '',
+				callback : null
       }, options );
 
       
@@ -20,7 +21,7 @@
 		
 		var ct = 0;
 		var loadCount = this.length;
-console.log("length is " + loadCount)
+		console.log("length is " + loadCount);
 		// load one by one
     this.each(function(index, element)
     {			
@@ -38,8 +39,17 @@ console.log("length is " + loadCount)
 			{
 				console.log("done!");
 				
-				// bring the loaded stuff
-				$("." + settings.loadedClass).css("display","block");		
+				
+				if (settings.callback === null)
+				{
+					// bring the loaded stuff
+					$("." + settings.loadedClass).css("display","block");
+				}
+				else
+				{
+					settings.callback();	
+				}
+				
 				
 			}
 			
