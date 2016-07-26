@@ -49,8 +49,11 @@
 				if (settings.onComplete === null)
 				{
 					// bring the loaded stuff & hide the loading class
-					$("." + settings.loadedClass).css("display","block");
-					$("." + settings.loadingClass).css("display","none");
+					window.setTimeout(function()
+														{
+															$("." + settings.loadingClass).fadeOut(200, function(){$("." + settings.loadedClass).fadeIn(200);});															
+														},300);
+					
 				}
 				else
 				{

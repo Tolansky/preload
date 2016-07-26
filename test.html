@@ -10,40 +10,70 @@
 			{
 				display:none;
 			}
+			.loadingCentre
+			{
+				position:absolute;
+				height:130px;
+				width:130px;
+				left:50%;
+				top:50%;
+				margin-left:-65px;
+				margin-top:-65px;
+				background:white;
+			}
+			
+			#loadingBar
+			{
+				width:130px;
+				height:15px;
+				border: 1px solid #ccc;
+				border-radius:20px;				
+			}
 		</style>
   </head>
 
   <body>		
+		
+		<!--Some loading stuff-->
+		<div class="loadingContent loadingCentre">
+			<img src="images/gears.gif">			
+			<div id="loadingBar"></div>
+		</div>
 		
 		<!--These are some big pictures -->
 		<img src="images/pic1.jpg" class="toLoad loadedContent">
 		<img src="images/pic2.jpg" class="toLoad loadedContent">
 		<img src="images/pic3.jpg" class="toLoad loadedContent">
 		
-		<div class="loadingContent">loading...</div>
+		
 		<div class="loadedContent">loaded!</div>
 		
 		<script type="text/javascript">
 		
 			//An example progress function - just a console log in this case
 			function progress(x, total)
-			{
-				console.log(x + "/" + total);
+			{				
+				var p1 = parseInt(100/total*x);
+				var p2 = p1 + 1;
+				console.log(p1 + "," + p2);
+				$("#loadingBar").css("background","linear-gradient(90deg, #FFC0CB " + p1 + "%, #FFF " + p2 + "%)");				
 			}
 			
 			//An example completion function
 			function complete()
 			{
-				$(".loadingContent").fadeIn(200, function(){$(".loadedContent").fadeIn(200)});
+				//Could put something in here to do after load (this replaces the default action)
 				
-				console.log("completely loaded");
+				//This would do the same as the default function if it's wanted as well
+				//$(".loadingContent").fadeOut(200, function(){$(".loadedContent").fadeIn(200);});						
 			}
+			
 			
 			//jQuery call to the module	 
 			$(".toLoad").preload({loadingClass: 'loadingContent',									// Class of elements to show while loading
 														loadedClass: 'loadedContent',										// Class of elements to show once loaded
-														progressFunction: progress,											// Optional function to call per element loaded (passing in index,totalCount)
-														onComplete: complete														// Optional function to call once all are loaded
+														progressFunction: progress											// Optional function to call per element loaded (passing in index,totalCount)
+				//										onComplete: complete														// Optional function to call once all are loaded
 														});		
 		</script>
 
