@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-	<!--Scripts-->
+	
+		<TITLE>Cache example</TITLE>
+		<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+	
+		<!--Scripts-->
     <script type="text/javascript" src="scripts/jquery-2.1.4.min.js"></script> 	<!-- jQuery -->
     <script type="text/javascript" src="scripts/prefixfree.min.js"></script>    <!-- prefixFree from -->
     <script type="text/javascript" src="scripts/preload.js"></script>
@@ -29,6 +33,18 @@
 				border: 1px solid #ccc;
 				border-radius:20px;				
 			}
+			
+			.loadedContent
+			{
+				height:200px;
+			}
+			#loadingText
+			{
+				text-align:center;
+				color:#AAA;
+				font-size:11px;
+				font-family:arial;
+			}
 		</style>
   </head>
 
@@ -38,6 +54,7 @@
 		<div class="loadingContent loadingCentre">
 			<img src="images/gears.gif">			
 			<div id="loadingBar"></div>
+			<div id="loadingText">Loading 12.8MB of files..</div>
 		</div>
 		
 		<!--These are some big pictures -->
@@ -45,8 +62,6 @@
 		<img src="images/pic2.jpg" class="toLoad loadedContent">
 		<img src="images/pic3.jpg" class="toLoad loadedContent">
 		
-		
-		<div class="loadedContent">loaded!</div>
 		
 		<script type="text/javascript">
 		
