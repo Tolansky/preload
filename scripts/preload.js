@@ -12,38 +12,21 @@
       }, options );
 
       
-    
+    console.log("jQuery called");
+		
     //do some stuff before looping through
 		$("." + settings.loadedClass).css("display","none");
 		$("." + settings.loadingClass).css("display","block");
 		
 		var ct = 0;
 		var loadCount = this.length;
-		
-
-    // hide the files
-    this.each(function(index, element)       
-    {
-			$(element).css("display","none");			
-    });
-	
-		// hide the files
-    this.each(function(index, element)       
-    {
-			$(element).css("display","none");			
-    });
-	
-	
+console.log("length is " + loadCount)
 		// load one by one
-    this.each(function(index, element)       
-    {
-			
-			$(this).load(function()
-			{
-				// Handler for .load() called.
-				loaded();
-			});
-			$(element).css("display","block");
+    this.each(function(index, element)
+    {			
+			var img = new Image();
+			img.src = $(element).attr('src');		
+			img.onload = loaded;			
     });
 	
 		
@@ -54,6 +37,10 @@
 			if (ct >= loadCount)
 			{
 				console.log("done!");
+				
+				// bring the loaded stuff
+				$("." + settings.loadedClass).css("display","block");		
+				
 			}
 			
 		}
