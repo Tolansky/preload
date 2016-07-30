@@ -1,96 +1,131 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-	
-		<TITLE>Cache example</TITLE>
-		<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
-	
-		<!--Scripts-->
-    <script type="text/javascript" src="scripts/jquery-2.1.4.min.js"></script> 	<!-- jQuery -->
-    <script type="text/javascript" src="scripts/prefixfree.min.js"></script>    <!-- prefixFree from -->
-    <script type="text/javascript" src="scripts/preload.js"></script>
-		<style>
-			.toLoad
-			{
-				display:none;
-			}
-			.loadingCentre
-			{
-				position:absolute;
-				height:130px;
-				width:130px;
-				left:50%;
-				top:50%;
-				margin-left:-65px;
-				margin-top:-65px;
-				background:white;
-			}
-			
-			#loadingBar
-			{
-				width:130px;
-				height:15px;
-				border: 1px solid #ccc;
-				border-radius:20px;				
-			}
-			
-			.loadedContent
-			{
-				height:200px;
-			}
-			#loadingText
-			{
-				text-align:center;
-				color:#AAA;
-				font-size:11px;
-				font-family:arial;
-			}
-		</style>
-  </head>
+    <head>
+    
+        <!-- Usual compatibility stuff -->    
+        <meta charset="UTF-8">
+        
+        <!-- Title -->
+        <title>preload - a plugin for jQuery</title>
+        
+        <!-- Formatting -->
+        <link rel="stylesheet" href="gh page files/page.css">
+        <link href='https://fonts.googleapis.com/css?family=Lato:400,300|Orbitron:400,500,700' rel='stylesheet' type='text/css'>
+        <link href="gh page files/rainbow/themes/github.css" rel="stylesheet" type="text/css">
+        
+        <!-- Include whatever scripts necessary -->
+        <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+        <script src="gh page files/rainbow/rainbow.min.js"></script>
+        <script src="gh page files/rainbow/language/generic.js"></script>
+        <script src="gh page files/rainbow/language/javascript.js"></script>
+    </head>
+    
+    <body>
+        
+        <!--GitHub ribbon-->
+        <a target="_blank" href="https://github.com/tolansky/preload"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/e7bbb0521b397edbd5fe43e7f760759336b5e05f/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"></a>
+        
+        <!-- Header -->
+        <header>
+            jQuery Preload
+            <div class="subHeader">from <a target="_blank" href="http://www.tolansky.com">Tolansky</a></div>            
+        </header>
+        
+        <!-- Main -->
+        <main>
+            <section class="description">
+                jQuery Preload is a small plugin for gracefully handling the initial load of larger images on a webpage, released freely under the Apache license.
+                <br><br>
+                When run, the main content of the page will be hidden, and the images will be loaded one by one. As the images are loaded, an optional callback function is triggered (e.g. to a progress bar). Once complete, another optional function can be run, or by default any 'loading' elements will fade out, and the main content will fade in.
+            </section>
+            
+            
+            <section class="basic" title="Demo:">
+                <a href="try.html" target="_blank">Click here</a> to try out a sample that takes advantage of this plugin (load in private/incognito mode if you've already looked and it's cached)
+            </section>
+            
+            <section class="basic" title="Basic Usage:">
+                
+                Install by referencing the js file:
+                <pre><code data-language="html">&lt;script src='scripts/jquery.preload-1.00.js'&gt;&lt;/script&gt;</code></pre>
+                
+                <b>Elements to preload</b> should all be assigned a particular class, e.g. 'preloadMe'.
+                
+                
+                <br><br>
+                <b>Elements to show once preload is complete</b> should all be assigned a particular class, e.g. 'mainContent'.
+                
+                <br><br>
+                <b>(Optional) Elements to display until preload completes</b> (if any) should all be assigned a particular class, e.g. 'loadingElements'
+                
+                <br><br>
+                At the end of your HTML body, 
+                <pre><code data-language="javascript">$(".preloadMe").preload(
+    {
+        loadingClass: 'loadingElements',    // Show while loading
+        loadedClass: 'mainContent'	    // Show once loaded        
+    });		
+                </code></pre>
+                 
+            </section >
+            
+            <section class="advanced" title="Customisation Options:">
+                 <pre><code data-language="javascript">$(".preloadMe").preload(
+    {
+        loadingClass: 'loadingElements',    // Show while loading
+        loadedClass: 'mainContent',	    // Show once loaded
+        progressFunction: progressFn,       // Function to call for each img load
+        onComplete: completeFn,             // Function to call on completion
+        waitFirst: 500,                     // Wait (ms) before showing 'loading'
+    });		
+                </code></pre>
+                 
+                 <b>Progress Function: </b>If provided, this will call a given function with 2 parameters. The first is the index of the image that has completed loaded (incrementally). The second parameter is the total count of images to be loaded. So the receiving function could for example build a progress bar, or  a message of "pictures X out of Y completed", etc.
+                 <br><br>                 
+                 <b>On Complete Function: </b>If provided, this function is called after all the images are preloaded completely. PLEASE NOTE: this replaced the default fade out of the loading-elements and fade in of the loaded-elements, in case you want to do something fancier.
+                 <br><br>
+                 <b>Wait First: </b> This is defaulted to 100ms (as of v 1.00) - this delays showing the 'loading' elements in case the preload takes a sufficiently short time to make it unnecessary. For example if the user has already viewed the page and everything is cached, then there is no need to flash up a loading bar for a split second.
+            </section >
+            
+            
+            <section class="stats" title="Stats:">
+                <table >
+                    <tr>
+                        <td>Files required for installation:</td>
+                        <td>1 (jquery.preload-x.yy.js)</td>
+                    </tr>
+                    <tr>
+                        <td>Total Size:</td>
+                        <td>673 bytes minified, ~2kb raw</td>
+                    </tr>
+                    <tr>
+                        <td>Notable Requirements:</td>
+                        <td>jQuery</td>
+                    </tr>
+                </table>
+            </section >
 
-  <body>		
-		
-		<!--Some loading stuff-->
-		<div class="loadingContent loadingCentre">
-			<img src="images/gears.gif">			
-			<div id="loadingBar"></div>
-			<div id="loadingText">Loading 12.8MB of files..</div>
-		</div>
-		
-		<!--These are some big pictures -->
-		<img src="images/pic1.jpg" class="toLoad loadedContent">
-		<img src="images/pic2.jpg" class="toLoad loadedContent">
-		<img src="images/pic3.jpg" class="toLoad loadedContent">
-		
-		
-		<script type="text/javascript">
-		
-			//An example progress function - just a console log in this case
-			function progress(x, total)
-			{				
-				var p1 = parseInt(100/total*x);
-				var p2 = p1 + 1;
-				console.log(p1 + "," + p2);
-				$("#loadingBar").css("background","linear-gradient(90deg, #FFC0CB " + p1 + "%, #FFF " + p2 + "%)");				
-			}
-			
-			//An example completion function
-			function complete()
-			{
-				//Could put something in here to do after load (this replaces the default action)
-				
-				//This would do the same as the default function if it's wanted as well
-				//$(".loadingContent").fadeOut(200, function(){$(".loadedContent").fadeIn(200);});						
-			}
-			
-			
-			//jQuery call to the module	 
-			$(".toLoad").preload({loadingClass: 'loadingContent',									// Class of elements to show while loading
-														loadedClass: 'loadedContent',										// Class of elements to show once loaded
-														progressFunction: progress											// Optional function to call per element loaded (passing in index,totalCount)
-				//										onComplete: complete														// Optional function to call once all are loaded
-														});		
-		</script>
 
-  </body>
+
+        <!-- Footer -->        
+        <footer>
+            <table width=100%>
+                <tr>
+                    <td style="text-align:left; float:left;">
+                        
+                        <a href="https://twitter.com/TolanskyLabs" class="twitter-follow-button" data-show-count="false" data-dnt="true">Follow @TolanskyLabs</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                    </td>
+                    <td style="text-align:right;">
+                        <span class="copyright"><a href="http://www.tolansky.com" target="_new">&#169; Tolansky</a></span>
+                    </td>
+                </tr>
+            </table>
+            
+            
+        </footer>
+        </main>
+        
+       
+       
+    </body>
 </html>
