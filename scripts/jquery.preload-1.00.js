@@ -10,18 +10,28 @@
         loadingClass: '',                              // The delay before the process starts
         loadedClass: '',
 				progressFunction: null,
-				onComplete : null
+				onComplete : null,
+				waitFirst: 100									// Delay before starting (because what if everything's loaded already?)
       }, options );
 
       
-		//Count & Total Length variables
+		//Tracking variables
 		var ct = 0;
 		var loadCount = this.length;
+		var needToPresent = true;
 		
 		
     //do some stuff before looping through
 		$("." + settings.loadedClass).css("display","none");
-		$("." + settings.loadingClass).css("display","block");
+		$("." + settings.loadingClass).css("display","none");
+		
+		setTimeout(function()
+							 {
+								if (needToPresent)
+								{
+									$("." + settings.loadingClass).css("display","block");
+								}
+							 },settings.waitFirst);
 		
 		
 		// load one by one
@@ -43,8 +53,8 @@
 			}
 			if (ct >= loadCount)
 			{
-				console.log("done!");
-				
+				console.log("done!");				
+				needToPresent = false;
 				
 				if (settings.onComplete === null)
 				{
