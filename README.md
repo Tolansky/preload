@@ -49,6 +49,6 @@ Dillinger uses a number of open source projects to work properly:
 ### Stats
 | |       |
 |----------------|-------|
-| Files required for installation | 1 (jQuery.preload-x.y.y.js)|
+| Files required for installation | 1 (jQuery.preload-x.y.z.js)|
 | Total Size            | ~700 bytes minified, ~3kb raw   |
 | Notable Requirements            | jQuery |
