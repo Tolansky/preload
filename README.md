@@ -32,11 +32,11 @@ $(".preloadMe").preload(
 ```sh
 $(".preloadMe").preload(
     {
-        loadingClass: 'loadingElements',    // Show while loading
         loadedClass: 'mainContent',	    // Show once loaded
-        progressFunction: progressFn,       // Function to call for each img load
-        onComplete: completeFn,             // Function to call on completion
-        waitFirst: 500,                     // Wait (ms) before showing 'loading'
+        loadingClass: 'loadingElements',    // [optional] Show while loading 
+        progressFunction: progressFn,       // [optional] Function to call for each img load
+        onComplete: completeFn,             // [optional] Function to call on completion
+        waitFirst: 500,                     // [optional] Wait (ms) before showing 'loading'
     });		
 ```        
 **Progress Function:** If provided, this will call a given function with 2 parameters. The first is the index of the image that has completed loaded (incrementally). The second parameter is the total count of images to be loaded. So the receiving function could for example build a progress bar, or a message of "pictures X out of Y completed", etc. 
@@ -49,6 +49,6 @@ Dillinger uses a number of open source projects to work properly:
 ### Stats
 | |       |
 |----------------|-------|
-| Files required for installation | 1 (jQuery.preload-x.yy.js)|
-| Total Size            | 674 bytes minified, ~2kb raw   |
+| Files required for installation | 1 (jQuery.preload-x.y.y.js)|
+| Total Size            | ~700 bytes minified, ~3kb raw   |
 | Notable Requirements            | jQuery |
