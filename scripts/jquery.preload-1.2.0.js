@@ -7,7 +7,7 @@
     var settings = $.extend(
       {
         // These are the defaults.
-        loadingClass: '',                              // The delay before the process starts
+        loadingClass: '',           
         loadedClass: '',
 				progressFunction: null,
 				onComplete : null,
@@ -23,11 +23,15 @@
 		
     //do some stuff before looping through
 		$("." + settings.loadedClass).css("display","none");
-		$("." + settings.loadingClass).css("display","none");
+		
+		if (settings.loadingClass !== '')
+		{			
+			$("." + settings.loadingClass).css("display","none");
+		}
 		
 		setTimeout(function()
 							 {
-								if (needToPresent)
+								if (needToPresent && settings.loadingClass !== '')
 								{
 									$("." + settings.loadingClass).css("display","block");
 								}
@@ -61,7 +65,15 @@
 					// bring the loaded stuff & hide the loading class
 					window.setTimeout(function()
 														{
-															$("." + settings.loadingClass).fadeOut(200, function(){$("." + settings.loadedClass).fadeIn(200);});															
+																if (settings.loadingClass !== '')
+																{
+																	$("." + settings.loadingClass).fadeOut(200, function(){$("." + settings.loadedClass).fadeIn(200);});																			
+																}
+																else
+																{
+																	$("." + settings.loadedClass).fadeIn(200);	
+																}
+															
 														},300);
 					
 				}
