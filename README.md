@@ -1,6 +1,6 @@
 # jQuery Preload
 
-jQuery Preload is a small plugin for your website to gracefully handling the initial load of larger images on a webpage, released freely under the Apache license. 
+jQuery Preload is a small plugin for your website to gracefully handle the initial load of larger images on a webpage, released freely under the Apache license. 
 
 When run, the main content of the page will be hidden, and the images will be loaded one by one. As the images are loaded, an optional callback function is triggered (e.g. to a progress bar). Once complete, another optional function can be run, or by default any 'loading' elements will fade out, and the main content will fade in.
 
