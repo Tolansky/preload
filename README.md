@@ -24,8 +24,9 @@ At the end of your HTML body,
 ```sh
 $(".preloadMe").preload(
     {
-        loadingClass: 'loadingElements',    // Show while loading
-        loadedClass: 'mainContent'	        // Show once loaded        
+        loadedClass: 'mainContent',	        // Show once loaded        
+        loadingClass: 'loadingElements'     // [optional] Show while loading
+        
     });		
 ```         
 ### Customisation Options
