@@ -25,14 +25,14 @@ At the end of your HTML body,
 $(".preloadMe").preload(
     {
         loadingClass: 'loadingElements',    // Show while loading
-        loadedClass: 'mainContent'	    // Show once loaded        
+        loadedClass: 'mainContent'	        // Show once loaded        
     });		
 ```         
 ### Customisation Options
 ```sh
 $(".preloadMe").preload(
     {
-        loadedClass: 'mainContent',	    // Show once loaded
+        loadedClass: 'mainContent',	        // Show once loaded
         loadingClass: 'loadingElements',    // [optional] Show while loading 
         progressFunction: progressFn,       // [optional] Function to call for each img load
         onComplete: completeFn,             // [optional] Function to call on completion
