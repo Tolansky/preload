@@ -12,7 +12,7 @@ When run, the main content of the page will be hidden, and the images will be in
 
 Install by referencing the js file:
 ```sh
-<script src='scripts/jquery.preload-1.00.js'></script>
+<script src='scripts/jquery.preload-x.y.z.js'></script>
 ```
 **Elements to preload** should all be assigned a particular class, e.g. 'preloadMe'. 
 
