@@ -42,10 +42,9 @@ $(".preloadMe").preload(
 ```        
 **Progress Function:** If provided, this will call a given function with 2 parameters. The first is the index of the image that has completed loaded (incrementally). The second parameter is the total count of images to be loaded. So the receiving function could for example build a progress bar, or a message of "pictures X out of Y completed", etc. 
 
-**On Complete Function:** If provided, this function is called after all the images are preloaded completely. PLEASE NOTE: this replaced the default fade out of the loading-elements and fade in of the loaded-elements, in case you want to do something fancier.
+**On Complete Function:** If provided, this function is called after all the images are preloaded completely. PLEASE NOTE: this replaces the default fade out of the loading-elements and fade in of the loaded-elements, in case you want to do something fancier.
 
 **Wait First:** This is defaulted to 100ms (as of v 1.00) - this delays showing the 'loading' elements in case the preload takes a sufficiently short time to make it unnecessary. For example if the user has already viewed the page and everything is cached, then there is no need to flash up a loading bar for a split second.
-Dillinger uses a number of open source projects to work properly:
 
 ### Stats
 | |       |
